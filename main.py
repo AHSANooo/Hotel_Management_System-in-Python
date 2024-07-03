@@ -52,32 +52,36 @@ class KFCManagementSystem:
         if not re.match("^[A-Za-z ]+$", self.customer_name):
             print("Invalid input. Please enter a valid name.")
             return self.welcome_screen()
-        self.check_inventory()
+        self.select_items()
 
-    def check_inventory(self, selected_items = []):
-        available_items = {item: details for item, details in self.inventory.items() if all(count > 0 for count in details['components'].values())}
-        if not available_items:
-            print("Sorry, no items are available at the moment.")
-            return
-        print("Available items:")
-        for item, details in available_items.items():
-            print(f"{item}: Rs.{details['price']}")
-        self.order_items = self.select_items(available_items, selected_items)
+    def get_available_items(self):
+        return {item: details for item, details in self.inventory.items() if all(count > 0 for count in details['components'].values())}
 
-    def select_items(self, available_items, selected_items):
-
+    def select_items(self):
+        selected_items = []
         while True:
+            available_items = self.get_available_items()
+            if not available_items:
+                print("Sorry, no items are available at the moment.")
+                return
+
+            print("Available items:")
+            for item, details in available_items.items():
+                print(f"{item}: Rs.{details['price']}")
+
             item = input("Enter item name to add to your order (or type 'done' to finish): ").strip().lower()
             if item == 'done':
                 break
             if item in available_items:
                 selected_items.append(item)
-                self.check_inventory(selected_items)
+                for component, count in self.inventory[item]['components'].items():
+                    self.inventory[item]['components'][component] -= 1
             else:
                 print("Item not available. Please choose from the available items.")
+
         if not selected_items:
             print("No items selected. Please select at least one item.")
-            return self.select_items(available_items)
+            return self.select_items()
         self.payment_method(selected_items)
 
     def payment_method(self, selected_items):
@@ -126,9 +130,9 @@ class KFCManagementSystem:
         self.update_inventory(selected_items)
 
     def update_inventory(self, selected_items):
-        for item in selected_items:
-            for component, count in self.inventory[item]['components'].items():
-                self.inventory[item]['components'][component] -= 1
+        #for item in selected_items:
+        #   for component, count in self.inventory[item]['components'].items():
+        #        self.inventory[item]['components'][component] -= 1
         self.save_inventory()
 
 
