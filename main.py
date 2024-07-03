@@ -2,7 +2,9 @@ import json
 import re
 from datetime import datetime
 
+
 class KFCManagementSystem:
+
     def __init__(self):
         self.inventory_file = 'inventory.txt'
         self.orders_file = 'orders.txt'
@@ -46,13 +48,13 @@ class KFCManagementSystem:
 
     def welcome_screen(self):
         print("Welcome to KFC!")
-        self.customer_name = input("Please enter your full name: ")
+        self.customer_name = input("Please enter your full name: ").strip().upper()
         if not re.match("^[A-Za-z ]+$", self.customer_name):
             print("Invalid input. Please enter a valid name.")
             return self.welcome_screen()
         self.check_inventory()
 
-    def check_inventory(self):
+    def check_inventory(self, selected_items = []):
         available_items = {item: details for item, details in self.inventory.items() if all(count > 0 for count in details['components'].values())}
         if not available_items:
             print("Sorry, no items are available at the moment.")
@@ -60,16 +62,17 @@ class KFCManagementSystem:
         print("Available items:")
         for item, details in available_items.items():
             print(f"{item}: Rs.{details['price']}")
-        self.order_items = self.select_items(available_items)
+        self.order_items = self.select_items(available_items, selected_items)
 
-    def select_items(self, available_items):
-        selected_items = []
+    def select_items(self, available_items, selected_items):
+
         while True:
             item = input("Enter item name to add to your order (or type 'done' to finish): ").strip().lower()
             if item == 'done':
                 break
             if item in available_items:
                 selected_items.append(item)
+                self.check_inventory(selected_items)
             else:
                 print("Item not available. Please choose from the available items.")
         if not selected_items:
@@ -94,9 +97,9 @@ class KFCManagementSystem:
             if self.customers[self.customer_name] > 10:
                 discount += 0.12
         total_after_discount = total * (1 - discount)
-        self.store_order(selected_items, payment_method, total_after_discount,discount,total)
+        self.store_order(selected_items, payment_method, total_after_discount, discount, total)
 
-    def store_order(self, selected_items, payment_method, total_after_discount,total_discount,total):
+    def store_order(self, selected_items, payment_method, total_after_discount, total_discount, total):
         order = {
             'customer_name': self.customer_name,
             'items': selected_items,
@@ -115,19 +118,19 @@ class KFCManagementSystem:
         print(f"Customer_name : {self.customer_name}")
         print(f"Items : {selected_items}")
         print(f"Payment Method :  {payment_method}")
-        print(f"Total : {total_after_discount}")
-        print(f"Bill : {total}")
+        print(f"Bill : Rs.{total}/-")
         print(f"Discount : {total_discount*100}%")
-        print(f"Total amount to be paid: ${total_after_discount:.2f}")
-        print(f"Date and time : {datetime.now().isoformat()}")
+        print(f"Total amount to be paid: Rs.{total_after_discount:.2f}/.")
+        print(f"Date and time : {datetime.now().date()}   {datetime.now().strftime('%H:%M')}")
 
         self.update_inventory(selected_items)
 
     def update_inventory(self, selected_items):
         for item in selected_items:
             for component, count in self.inventory[item]['components'].items():
-                self.inventory[component] -= count
+                self.inventory[item]['components'][component] -= 1
         self.save_inventory()
+
 
 if __name__ == "__main__":
     system = KFCManagementSystem()
