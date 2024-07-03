@@ -1,0 +1,23 @@
+{
+    "burger": {
+        "price": 5.0,
+        "components": {
+            "lettuce": 1,
+            "cheese": 1,
+            "bun": 1,
+            "chicken": 1
+        }
+    },
+    "fries": {
+        "price": 2.0,
+        "components": {
+            "potato": 1
+        }
+    },
+    "soda": {
+        "price": 1.5,
+        "components": {
+            "soda": 1
+        }
+    }
+}

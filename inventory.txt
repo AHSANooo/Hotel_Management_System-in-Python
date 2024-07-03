@@ -1,0 +1,23 @@
+{
+  "burger": {
+    "price": 500,
+    "components": {
+      "lettuce": 5,
+      "cheese": 5,
+      "bun": 2,
+      "chicken": 3
+    }
+  },
+  "fries": {
+    "price": 200,
+    "components": {
+      "potato": 50
+    }
+  },
+  "drink": {
+    "price": 150,
+    "components": {
+      "soda_packs": 50
+    }
+  }
+}
