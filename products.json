@@ -1,0 +1,62 @@
+{
+  "burger": {
+    "price": 500,
+    "components": {
+      "lettuce": 2,
+      "cheese": 3,
+      "bun": 2,
+      "chicken": 1
+    }
+  },
+  "fries": {
+    "price": 200,
+    "components": {
+      "potato": 1
+    }
+  },
+  "drink": {
+    "price": 150,
+    "components": {
+      "soda_packs": 3
+    }
+  },
+  "hot_wings": {
+    "price": 300,
+    "components": {
+      "chicken_wings": 5,
+      "spices": 1
+    }
+  },
+  "coleslaw": {
+    "price": 180,
+    "components": {
+      "cabbage": 2,
+      "mayonnaise": 1
+    }
+  },
+  "chicken_strips": {
+    "price": 350,
+    "components": {
+      "chicken_breast": 3,
+      "flour": 2,
+      "spices": 1
+    }
+  },
+  "mashed_potatoes": {
+    "price": 220,
+    "components": {
+      "potato": 2,
+      "butter": 1,
+      "cream": 1
+    }
+  },
+  "corn_on_cob": {
+    "discount": 0.3,
+    "price": 180,
+    "components": {
+      "corn_cob": 1,
+      "butter": 1,
+      "salt": 1
+    }
+  }
+}

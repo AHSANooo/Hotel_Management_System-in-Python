@@ -1,0 +1,364 @@
+[
+    {
+        "customer_name": "John Raza",
+        "order_items": [
+            "burger",
+            "fries"
+        ],
+        "payment_method": "card",
+        "total": 6.65,
+        "datetime": "2024-07-01T12:34:56"
+    },
+    {
+        "customer_name": "Zain BHai",
+        "items": [
+            "burger",
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 10.0,
+        "datetime": "2024-07-02T17:47:42.608513"
+    },
+    {
+        "customer_name": "Zain Bhai",
+        "items": [
+            "fries",
+            "fries",
+            "fries",
+            "burger"
+        ],
+        "payment_method": "card",
+        "total": 10.153,
+        "datetime": "2024-07-02T17:52:36.746549"
+    },
+    {
+        "customer_name": "Muhammad Ahsan",
+        "items": [
+            "burger",
+            "fries",
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 12.0,
+        "datetime": "2024-07-03T09:46:51.778838"
+    },
+    {
+        "customer_name": "Muhammad Ahsan",
+        "items": [
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 486.5,
+        "datetime": "2024-07-03T10:15:48.187797"
+    },
+    {
+        "customer_name": "Muhammad Ahsan",
+        "items": [
+            "drink",
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 632.4499999999999,
+        "datetime": "2024-07-03T11:05:27.543861"
+    },
+    {
+        "customer_name": "Muhammad Ahsan",
+        "items": [
+            "drink",
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 632.4499999999999,
+        "datetime": "2024-07-03T11:09:36.990475"
+    },
+    {
+        "customer_name": "Muhammad Ahsan",
+        "items": [
+            "burger",
+            "fries"
+        ],
+        "payment_method": "cash",
+        "total": 681.1,
+        "datetime": "2024-07-03T11:11:37.231639"
+    },
+    {
+        "customer_name": "Muhammad Ahsan",
+        "items": [
+            "fries"
+        ],
+        "payment_method": "card",
+        "total": 184.60000000000002,
+        "datetime": "2024-07-03T11:13:53.402214"
+    },
+    {
+        "customer_name": "Muhammad Ahsan ",
+        "items": [
+            "fries"
+        ],
+        "payment_method": "cash",
+        "total": 200,
+        "datetime": "2024-07-03T11:18:42.105987"
+    },
+    {
+        "customer_name": "Muhammad Ahsan ",
+        "items": [
+            "fries"
+        ],
+        "payment_method": "cash",
+        "total": 194.6,
+        "datetime": "2024-07-03T11:21:01.878903"
+    },
+    {
+        "customer_name": "Muhammad Ahsan",
+        "items": [
+            "fries"
+        ],
+        "payment_method": "cash",
+        "total": 194.6,
+        "datetime": "2024-07-03T11:21:31.030056"
+    },
+    {
+        "customer_name": "Muhammad Ahsan",
+        "items": [
+            "fries",
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 681.1,
+        "datetime": "2024-07-03T11:25:48.271792"
+    },
+    {
+        "customer_name": "Muhammad Ahsan",
+        "items": [
+            "fries",
+            "drink"
+        ],
+        "payment_method": "card",
+        "total": 323.05,
+        "datetime": "2024-07-03T11:29:25.291128"
+    },
+    {
+        "customer_name": "Muhammad Ahsan",
+        "items": [
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 486.5,
+        "datetime": "2024-07-03T11:36:48.868421"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "fries"
+        ],
+        "payment_method": "cash",
+        "total": 200,
+        "datetime": "2024-07-03T12:03:57.816312"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "burger"
+        ],
+        "payment_method": "card",
+        "total": 461.5,
+        "datetime": "2024-07-03T12:09:45.085132"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 486.5,
+        "datetime": "2024-07-03T12:10:28.778112"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "fries"
+        ],
+        "payment_method": "cash",
+        "total": 194.6,
+        "datetime": "2024-07-03T12:14:51.127240"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 486.5,
+        "datetime": "2024-07-03T12:39:04.509573"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 486.5,
+        "datetime": "2024-07-03T12:41:32.052924"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 486.5,
+        "datetime": "2024-07-03T12:42:58.889968"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 486.5,
+        "datetime": "2024-07-03T12:47:35.326314"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "pizza",
+            "drink"
+        ],
+        "payment_method": "cash",
+        "total": 729.75,
+        "datetime": "2024-07-03T14:03:22.062765"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": {
+            "burger": 1,
+            "salad": 1,
+            "fries": 1
+        },
+        "payment_method": "cash",
+        "total": 973.0,
+        "datetime": "2024-07-03T14:32:09.066807"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": {
+            "nuggets": 1,
+            "fries": 1
+        },
+        "payment_method": "cash",
+        "total": 437.84999999999997,
+        "datetime": "2024-07-03T14:51:00.651747"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "fries"
+        ],
+        "payment_method": "card",
+        "total": 160.6,
+        "datetime": "2024-07-03T15:20:48.519347"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": {
+            "burger": 2
+        },
+        "payment_method": "cash",
+        "total": 853.0,
+        "datetime": "2024-07-03T16:23:55.373658"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": {
+            "corn_on_cob": 20
+        },
+        "payment_method": "card",
+        "total": 2890.7999999999997,
+        "datetime": "2024-07-03T16:28:14.618182"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "fries",
+            "fries",
+            "fries",
+            "fries",
+            "fries"
+        ],
+        "payment_method": "cash",
+        "total": 853.0,
+        "datetime": "2024-07-04T09:56:32.564709"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "drink",
+            "drink",
+            "drink",
+            "drink"
+        ],
+        "payment_method": "cash",
+        "total": 511.8,
+        "datetime": "2024-07-04T09:58:07.548539"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "mashed_potatoes",
+            "mashed_potatoes"
+        ],
+        "payment_method": "cash",
+        "total": 375.32,
+        "datetime": "2024-07-04T10:04:30.125874"
+    },
+    {
+        "customer_name": "THE ZAD",
+        "items": [
+            "chicken_strips",
+            "chicken_strips",
+            "chicken_strips"
+        ],
+        "payment_method": "cash",
+        "total": 1050,
+        "datetime": "2024-07-04T10:19:02.741858"
+    },
+    {
+        "customer_name": "NMNMK",
+        "items": [
+            "burger",
+            "burger",
+            "burger",
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 2000,
+        "datetime": "2024-07-04T10:26:18.856214"
+    },
+    {
+        "customer_name": "THE ZAD",
+        "items": [
+            "burger"
+        ],
+        "payment_method": "card",
+        "total": 461.5,
+        "datetime": "2024-07-04T10:30:28.175183"
+    },
+    {
+        "customer_name": "JJH",
+        "items": [
+            "coleslaw"
+        ],
+        "payment_method": "cash",
+        "total": 180,
+        "datetime": "2024-07-04T10:31:44.859341"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 426.5,
+        "datetime": "2024-07-04T11:21:34.366878"
+    }
+]

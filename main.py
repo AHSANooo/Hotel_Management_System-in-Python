@@ -1,104 +1,128 @@
+
 import json
 import re
 from datetime import datetime
+from collections import Counter
 
 
 class KFCManagementSystem:
 
     def __init__(self):
-        self.inventory_file = 'inventory.txt'
-        self.orders_file = 'orders.txt'
-        self.customers_file = 'customers.txt'
+        self.inventory_file = 'inventory.json'
+        self.orders_file = 'orders.json'
+        self.products_file = 'products.json'
         self.load_inventory()
-        self.load_customers()
         self.load_orders()
+        self.load_products()
 
     def load_inventory(self):
         try:
             with open(self.inventory_file, 'r') as file:
-                self.inventory = json.loads(file.read())
+                self.inventory = json.load(file)
         except FileNotFoundError:
             self.inventory = {}
 
     def save_inventory(self):
         with open(self.inventory_file, 'w') as file:
-            file.write(json.dumps(self.inventory))
-
-    def load_customers(self):
-        try:
-            with open(self.customers_file, 'r') as file:
-                self.customers = json.loads(file.read())
-        except FileNotFoundError:
-            self.customers = {}
-
-    def save_customers(self):
-        with open(self.customers_file, 'w') as file:
-            file.write(json.dumps(self.customers))
+            json.dump(self.inventory, file, indent=4)
 
     def load_orders(self):
         try:
             with open(self.orders_file, 'r') as file:
-                self.orders = json.loads(file.read())
+                self.orders = json.load(file)
         except FileNotFoundError:
             self.orders = []
 
     def save_orders(self):
         with open(self.orders_file, 'w') as file:
-            file.write(json.dumps(self.orders))
+            json.dump(self.orders, file, indent=4)
+
+    def load_products(self):
+        try:
+            with open(self.products_file, 'r') as file:
+                self.products = json.load(file)
+        except FileNotFoundError:
+            self.products = {}
 
     def welcome_screen(self):
-        print("Welcome to KFC!")
+        print("Welcome to KFC!\n\n")
         self.customer_name = input("Please enter your full name: ").strip().upper()
         if not re.match("^[A-Za-z ]+$", self.customer_name):
-            print("Invalid input. Please enter a valid name.")
+            print("\nInvalid input. Please enter a valid name.")
             return self.welcome_screen()
         self.select_items()
 
     def get_available_items(self):
-        return {item: details for item, details in self.inventory.items() if all(count > 0 for count in details['components'].values())}
+        available_items = {}
+        for item, details in self.products.items():
+            if all(self.inventory.get(component, 0) >= count for component, count in details['components'].items()):
+                available_items[item] = details
+        return available_items
 
     def select_items(self):
         selected_items = []
+        available_items = self.get_available_items()
+
         while True:
-            available_items = self.get_available_items()
             if not available_items:
-                print("Sorry, no items are available at the moment.")
+                print("\nSorry, no items are available at the moment.")
                 return
 
-            print("Available items:")
+            print("\nAvailable items:")
+            index = 1
+            item_map = {}
             for item, details in available_items.items():
-                print(f"{item}: Rs.{details['price']}")
+                max_qty = min(self.inventory[component] // count for component, count in details['components'].items())
+                print(f"{index}. {item}: Rs.{details['price']} (Max: {max_qty})")
+                item_map[index] = item
+                index += 1
 
-            item = input("Enter item name to add to your order (or type 'done' to finish): ").strip().lower()
-            if item == 'done':
+            print(f"{index}. Done")
+            choice = input("\nEnter your choice (number): ").strip()
+            if not choice.isdigit() or int(choice) < 1 or int(choice) > index:
+                print("\nInvalid choice. Please enter a valid number.")
+                continue
+
+            if choice == str(index):
                 break
-            if item in available_items:
-                selected_items.append(item)
-                for component, count in self.inventory[item]['components'].items():
-                    self.inventory[item]['components'][component] -= 1
-            else:
-                print("Item not available. Please choose from the available items.")
+
+            selected_item = item_map[int(choice)]
+            max_qty = min(self.inventory[component] // count for component, count in self.products[selected_item]['components'].items())
+            qty = input(f"Enter quantity for {selected_item} (Max: {max_qty}): ").strip()
+            if not qty.isdigit() or int(qty) < 1 or int(qty) > max_qty:
+                print(f"\nInvalid quantity. Please enter a number between 1 and {max_qty}.")
+                continue
+
+            qty = int(qty)
+            selected_items.extend([selected_item] * qty)
+
+            for component, count in self.products[selected_item]['components'].items():
+                self.inventory[component] -= count * qty
 
         if not selected_items:
-            print("No items selected. Please select at least one item.")
+            print("\nNo items selected. Please select at least one item.")
             return self.select_items()
         self.payment_method(selected_items)
 
     def payment_method(self, selected_items):
-        payment_method = input("Enter payment method (Card/Cash): ").strip().lower()
+        payment_method = input("\nEnter payment method (Card/Cash): ").strip().lower()
         if payment_method not in ['card', 'cash']:
-            print("Invalid payment method. Please enter 'Card' or 'Cash'.")
+            print("\nInvalid payment method. Please enter 'Card' or 'Cash'.")
             return self.payment_method(selected_items)
         self.apply_discounts(selected_items, payment_method)
 
+    def get_order_count(self):
+        return sum(1 for order in self.orders if order['customer_name'] == self.customer_name)
+
     def apply_discounts(self, selected_items, payment_method):
-        total = sum(self.inventory[item]['price'] for item in selected_items)
+        total = sum(self.products[item]['price'] for item in selected_items)
         discount = 0
         if payment_method == 'card':
             discount += 0.05
-        if self.customer_name in self.customers:
+        order_count = self.get_order_count()
+        if order_count > 0:
             discount += 0.027
-            if self.customers[self.customer_name] > 10:
+            if order_count > 10:
                 discount += 0.12
         total_after_discount = total * (1 - discount)
         self.store_order(selected_items, payment_method, total_after_discount, discount, total)
@@ -113,14 +137,11 @@ class KFCManagementSystem:
         }
         self.orders.append(order)
         self.save_orders()
-        if self.customer_name in self.customers:
-            self.customers[self.customer_name] += 1
-        else:
-            self.customers[self.customer_name] = 1
-        self.save_customers()
+        item_summary = Counter(selected_items)
+        item_summary_str = ', '.join(f"{item} x {count}" for item, count in item_summary.items())
         print("Order placed successfully!")
         print(f"Customer_name : {self.customer_name}")
-        print(f"Items : {selected_items}")
+        print(f"Items : {item_summary_str}")
         print(f"Payment Method :  {payment_method}")
         print(f"Bill : Rs.{total}/-")
         print(f"Discount : {total_discount*100}%")
@@ -130,9 +151,6 @@ class KFCManagementSystem:
         self.update_inventory(selected_items)
 
     def update_inventory(self, selected_items):
-        #for item in selected_items:
-        #   for component, count in self.inventory[item]['components'].items():
-        #        self.inventory[item]['components'][component] -= 1
         self.save_inventory()
 
 

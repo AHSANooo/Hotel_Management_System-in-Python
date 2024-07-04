@@ -1,1 +1,0 @@
-{"John Raza": 11, "Zain Bhai": 2, "Muhammad Ahsan": 10, "MUHAMMAD AHSAN": 8}
