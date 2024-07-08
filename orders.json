@@ -99,5 +99,31 @@
         "total_discount": 0.027,
         "total_after_discount": 583.8,
         "datetime": "2024-07-08T14:31:26.135569"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "coleslaw"
+        ],
+        "payment_method": "card",
+        "total": 180,
+        "total_discount": 0.077,
+        "total_after_discount": 166.14000000000001,
+        "datetime": "2024-07-08T14:50:59.514408"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "fries",
+            "fries",
+            "fries",
+            "fries",
+            "fries"
+        ],
+        "payment_method": "cash",
+        "total": 1000,
+        "total_discount": 0.027,
+        "total_after_discount": 973.0,
+        "datetime": "2024-07-08T14:55:50.143795"
     }
 ]
