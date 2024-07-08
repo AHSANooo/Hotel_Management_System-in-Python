@@ -1,3 +1,4 @@
+""""
 import json
 import re
 from datetime import datetime
@@ -194,6 +195,14 @@ class KFCManagementSystem:
         print(f"Total Amount to be Paid: Rs.{total_after_discount:.2f}/-")
         print(f"Date and Time: {datetime.now().date()} {datetime.now().strftime('%H:%M')}")
 
+
+if __name__ == "__main__":
+    system = KFCManagementSystem()
+    system.welcome_screen()
+"""
+
+
+from kfc_management_system import KFCManagementSystem
 
 if __name__ == "__main__":
     system = KFCManagementSystem()

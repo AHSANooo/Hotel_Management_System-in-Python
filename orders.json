@@ -125,5 +125,16 @@
         "total_discount": 0.027,
         "total_after_discount": 973.0,
         "datetime": "2024-07-08T14:55:50.143795"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "hot_wings"
+        ],
+        "payment_method": "cash",
+        "total": 300,
+        "total_discount": 0.027,
+        "total_after_discount": 291.9,
+        "datetime": "2024-07-08T15:08:10.376469"
     }
 ]
