@@ -360,5 +360,49 @@
         "payment_method": "cash",
         "total": 426.5,
         "datetime": "2024-07-04T11:21:34.366878"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSA",
+        "items": [
+            "drink",
+            "drink",
+            "drink"
+        ],
+        "payment_method": "card",
+        "total": 427.5,
+        "datetime": "2024-07-04T11:54:08.176166"
+    },
+    {
+        "customer_name": "HI",
+        "items": [
+            "mashed_potatoes",
+            "mashed_potatoes",
+            "mashed_potatoes",
+            "mashed_potatoes",
+            "mashed_potatoes"
+        ],
+        "payment_method": "cash",
+        "total": 1096.6999999999996,
+        "datetime": "2024-07-04T11:56:39.006271"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "hot_wings",
+            "mashed_potatoes",
+            "mashed_potatoes"
+        ],
+        "payment_method": "cash",
+        "total": 629.3434,
+        "datetime": "2024-07-04T12:03:29.544731"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "coleslaw"
+        ],
+        "payment_method": "cash",
+        "total": 153.54,
+        "datetime": "2024-07-08T09:31:34.958222"
     }
 ]

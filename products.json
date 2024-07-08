@@ -1,5 +1,6 @@
 {
   "burger": {
+    "discount": 7,
     "price": 500,
     "components": {
       "lettuce": 2,
@@ -43,6 +44,7 @@
     }
   },
   "mashed_potatoes": {
+    "discount": 0.5,
     "price": 220,
     "components": {
       "potato": 2,
