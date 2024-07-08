@@ -17,30 +17,24 @@ class KFCManagementSystem:
 
     def load_inventory(self):
         try:
-            with open(self.inventory_file, 'r') as file:
-                self.inventory = json.load(file)
+           self.inventory = json.load(open(self.inventory_file))
         except FileNotFoundError:
             self.inventory = {}
 
     def save_inventory(self):
-        with open(self.inventory_file, 'w') as file:
-            json.dump(self.inventory, file, indent=4)
-
+        json.dump(self.inventory, open(self.inventory_file, 'w'), indent=4)
     def load_orders(self):
         try:
-            with open(self.orders_file, 'r') as file:
-                self.orders = json.load(file)
+            self.orders = json.load(open(self.orders_file))
         except FileNotFoundError:
             self.orders = []
 
     def save_orders(self):
-        with open(self.orders_file, 'w') as file:
-            json.dump(self.orders, file, indent=4)
+        json.dump(self.orders, open(self.orders_file, 'w'), indent=4)
 
     def load_products(self):
         try:
-            with open(self.products_file, 'r') as file:
-                self.products = json.load(file)
+            self.products = json.load(open(self.products_file))
         except FileNotFoundError:
             self.products = {}
 
@@ -169,6 +163,7 @@ if __name__ == "__main__":
     system.welcome_screen()
 
 """
+
 import json
 import re
 from datetime import datetime
@@ -178,24 +173,23 @@ from collections import Counter
 class InventoryManager:
     def __init__(self, inventory_file, products):
         self.inventory_file = inventory_file
-        self.load_inventory()
         self.products = products
+        self.load_inventory()
 
     def load_inventory(self):
         try:
-            with open(self.inventory_file, 'r') as file:
-                self.inventory = json.load(file)
+            self.inventory = json.load(open(self.inventory_file))
         except FileNotFoundError:
             self.inventory = {}
 
     def save_inventory(self):
-        with open(self.inventory_file, 'w') as file:
-            json.dump(self.inventory, file, indent=4)
+        json.dump(self.inventory, open(self.inventory_file, 'w'), indent=4)
 
     def update_inventory(self, items):
         for item in items:
             for component, count in self.products[item]['components'].items():
                 self.inventory[component] -= count
+        self.save_inventory()
 
     def check_availability(self, item):
         if item in self.products:
@@ -211,21 +205,21 @@ class OrderManager:
 
     def load_orders(self):
         try:
-            with open(self.orders_file, 'r') as file:
-                self.orders = json.load(file)
+            self.orders = json.load(open(self.orders_file))
         except FileNotFoundError:
             self.orders = []
 
     def save_orders(self):
-        with open(self.orders_file, 'w') as file:
-            json.dump(self.orders, file, indent=4)
+        json.dump(self.orders, open(self.orders_file, 'w'), indent=4)
 
-    def place_order(self, customer_name, items, payment_method, total):
+    def place_order(self, customer_name, items, payment_method, total, total_discount, total_after_discount):
         order = {
             'customer_name': customer_name,
             'items': items,
             'payment_method': payment_method,
             'total': total,
+            'total_discount': total_discount,
+            'total_after_discount': total_after_discount,
             'datetime': datetime.now().isoformat()
         }
         self.orders.append(order)
@@ -235,15 +229,13 @@ class OrderManager:
 
 class KFCManagementSystem:
     def __init__(self):
-        self.inventory_manager = None
         self.order_manager = OrderManager('orders.json')
         self.products_file = 'products.json'
         self.load_products()
 
     def load_products(self):
         try:
-            with open(self.products_file, 'r') as file:
-                self.products = json.load(file)
+            self.products = json.load(open(self.products_file))
         except FileNotFoundError:
             self.products = {}
 
@@ -280,7 +272,10 @@ class KFCManagementSystem:
             for item, details in available_items.items():
                 max_qty = min(self.inventory_manager.inventory[component] // count for component, count in
                               details['components'].items())
-                print(f"{index}. {item}: Rs.{details['price']} - Discount: {details.get('discount', 'None')}")
+                price_info = f"Rs.{details['price']}"
+                if 'discount' in details:
+                    price_info += f" (Discount: {details['discount']}%)"
+                print(f"{index}. {item}: {price_info} ")
                 item_map[index] = item
                 index += 1
 
@@ -310,39 +305,44 @@ class KFCManagementSystem:
         self.payment_method(selected_items)
 
     def payment_method(self, selected_items):
-        payment_method = input("\nEnter payment method (Card/Cash): ").strip().lower()
-        if payment_method not in ['card', 'cash']:
-            print("\nInvalid payment method. Please enter 'Card' or 'Cash'.")
+        try:
+            payment_method = int(input("\nEnter payment method: \n1.Card\n2.Cash\n "))
+        except:
+            print("\nInvalid payment method. Please enter 1 or 2.")
             return self.payment_method(selected_items)
+        if payment_method == 1:
+            payment_method = 'card'
+        elif payment_method == 2:
+            payment_method = 'cash'
+        else:
+            print("\nInvalid payment method. Please enter 1 or 2.")
         self.apply_discounts(selected_items, payment_method)
+
+    def get_order_count(self):
+        return sum(1 for order in self.order_manager.orders if order['customer_name'] == self.customer_name)
 
     def apply_discounts(self, selected_items, payment_method):
         total = sum(self.products[item]['price'] for item in selected_items)
         discount = 0
         if payment_method == 'card':
             discount += 0.05
-        if self.customer_name in self.order_manager.orders:
+        order_count = self.get_order_count()
+        if order_count > 0:
             discount += 0.027
-            if self.order_manager.orders[self.customer_name] > 10:
+            if order_count > 10:
                 discount += 0.12
+
+        # Apply product-specific discounts
+        for item in selected_items:
+            if 'discount' in self.products[item]:
+                item_discount = self.products[item]['discount'] / 100
+                total -= self.products[item]['price'] * item_discount
+
         total_after_discount = total * (1 - discount)
         self.store_order(selected_items, payment_method, total_after_discount, discount, total)
 
     def store_order(self, selected_items, payment_method, total_after_discount, total_discount, total):
-        order = {
-            'customer_name': self.customer_name,
-            'items': selected_items,
-            'payment_method': payment_method,
-            'total': total_after_discount,
-            'datetime': datetime.now().isoformat()
-        }
-        self.order_manager.orders.append(order)
-        self.order_manager.save_orders()
-        if self.customer_name in self.order_manager.orders:
-            self.order_manager.orders[self.customer_name] += 1
-        else:
-            self.order_manager.orders[self.customer_name] = 1
-        self.order_manager.save_orders()
+        self.order_manager.place_order(self.customer_name, selected_items, payment_method, total, total_discount, total_after_discount)
         item_summary = Counter(selected_items)
         item_summary_str = ', '.join(f"{item} x {count}" for item, count in item_summary.items())
         print("Order placed successfully!")
@@ -355,9 +355,6 @@ class KFCManagementSystem:
         print(f"Date and time : {datetime.now().date()}   {datetime.now().strftime('%H:%M')}")
 
         self.inventory_manager.update_inventory(selected_items)
-
-    def update_inventory(self, selected_items):
-        self.inventory_manager.save_inventory()
 
 
 if __name__ == "__main__":

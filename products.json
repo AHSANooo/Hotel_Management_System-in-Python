@@ -44,7 +44,7 @@
     }
   },
   "mashed_potatoes": {
-    "discount": 0.5,
+    "discount": 5,
     "price": 220,
     "components": {
       "potato": 2,
@@ -53,7 +53,7 @@
     }
   },
   "corn_on_cob": {
-    "discount": 0.3,
+    "discount": 3,
     "price": 180,
     "components": {
       "corn_cob": 1,
