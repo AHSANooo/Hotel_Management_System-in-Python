@@ -13,7 +13,7 @@ class InventoryManager:
             self.inventory = {}
 
     def save_inventory(self):
-        json.dump(self.inventory, open(self.inventory_file, 'w'),indent=4)
+        json.dump(self.inventory, open(self.inventory_file, 'w'), indent=4)
 
     def update_inventory(self, items):
         for item in items:
@@ -22,6 +22,4 @@ class InventoryManager:
         self.save_inventory()
 
     def check_availability(self, item):
-        if item in self.products:
-            return all(self.inventory.get(component, 0) >= count for component, count in self.products[item]['components'].items())
-        return False
+        return all(self.inventory[component] >= count for component, count in self.products[item]['components'].items())

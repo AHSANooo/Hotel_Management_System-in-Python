@@ -294,5 +294,29 @@
         "total_discount": 0.027,
         "total_after_discount": 514.9116,
         "datetime": "2024-07-09T14:48:16.502657"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "corn_on_cob",
+            "corn_on_cob"
+        ],
+        "payment_method": "1",
+        "total": 349.20000000000005,
+        "total_discount": 0.16999999999999998,
+        "total_after_discount": 289.83600000000007,
+        "datetime": "2024-07-09T15:04:04.185750"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "coleslaw",
+            "coleslaw"
+        ],
+        "payment_method": "1",
+        "total": 360,
+        "total_discount": 0.16999999999999998,
+        "total_after_discount": 298.8,
+        "datetime": "2024-07-09T15:24:38.146703"
     }
 ]

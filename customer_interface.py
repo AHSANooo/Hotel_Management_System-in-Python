@@ -6,6 +6,7 @@ from discount_manager import DiscountManager
 from input_validator import InputValidator
 from datetime import datetime
 
+
 class CustomerInterface:
     def __init__(self):
         self.inventory_manager = InventoryManager('inventory.json', ProductManager('products.json').products)
@@ -66,6 +67,7 @@ class CustomerInterface:
 
             qty = int(qty)
             selected_items.extend([selected_item] * qty)
+            self.inventory_manager.update_inventory(selected_items)
 
         return selected_items
 
@@ -101,4 +103,4 @@ class CustomerInterface:
         print(f"Total amount to be paid: Rs.{total_after_discount:.2f}/.")
         print(f"Date and time : {datetime.now().date()}   {datetime.now().strftime('%H:%M')}")
 
-        self.inventory_manager.update_inventory(selected_items)
+

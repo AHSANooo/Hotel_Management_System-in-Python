@@ -12,6 +12,7 @@ class ProgramManager:
             payment_method = self.customer_interface.payment_method()
             total, discount, total_after_discount = self.customer_interface.apply_discounts(selected_items, payment_method)
             self.customer_interface.store_order(selected_items, payment_method, total_after_discount, discount, total)
+            #input("Do you want to continue shopping?")
 
 
 if __name__ == "__main__":
