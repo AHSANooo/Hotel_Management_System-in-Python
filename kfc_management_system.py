@@ -1,3 +1,4 @@
+"""
 import json
 import re
 from datetime import datetime
@@ -164,3 +165,6 @@ class KFCManagementSystem:
         print(f"Date and time : {datetime.now().date()}   {datetime.now().strftime('%H:%M')}")
 
         #self.inventory_manager.update_inventory(selected_items)
+"""
+
+
