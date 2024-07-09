@@ -1,7 +1,7 @@
 import json
 import re
-from collections import Counter
 from datetime import datetime
+from collections import Counter
 from inventory_manager import InventoryManager
 from order_manager import OrderManager
 
@@ -13,8 +13,7 @@ class KFCManagementSystem:
 
     def load_products(self):
         try:
-            with open(self.products_file) as file:
-                self.products = json.load(file)
+            self.products = json.load(open(self.products_file))
         except FileNotFoundError:
             self.products = {}
 
@@ -26,10 +25,14 @@ class KFCManagementSystem:
         if not re.match("^[A-Za-z ]+$", self.customer_name):
             print("\nInvalid input. Please enter a valid name.")
             return self.welcome_screen()
+
         self.select_items()
 
     def get_available_items(self):
-        available_items = {item: details for item, details in self.products.items() if self.inventory_manager.check_availability(item)}
+        available_items = {}
+        for item, details in self.products.items():
+            if self.inventory_manager.check_availability(item):
+                available_items[item] = details
         return available_items
 
     def select_items(self):
@@ -45,8 +48,7 @@ class KFCManagementSystem:
             index = 1
             item_map = {}
             for item, details in available_items.items():
-                max_qty = min(self.inventory_manager.inventory[component] // count for component, count in
-                              details['components'].items())
+                max_qty = self.inventory_manager.get_max_qty(item)
                 price_info = f"Rs.{details['price']}"
                 if 'discount' in details:
                     price_info += f" (Discount: {details['discount']}%)"
@@ -64,8 +66,7 @@ class KFCManagementSystem:
                 break
 
             selected_item = item_map[int(choice)]
-            max_qty = min(self.inventory_manager.inventory[component] // count for component, count in
-                          self.products[selected_item]['components'].items())
+            max_qty = self.inventory_manager.get_max_qty(selected_item)
             qty = input(f"Enter quantity for {selected_item} (Max: {max_qty}): ").strip()
             if not qty.isdigit() or int(qty) < 1 or int(qty) > max_qty:
                 print(f"\nInvalid quantity. Please enter a number between 1 and {max_qty}.")
@@ -74,27 +75,49 @@ class KFCManagementSystem:
             qty = int(qty)
             selected_items.extend([selected_item] * qty)
 
+            # Update inventory after selection
+            self.inventory_manager.update_inventory([selected_item] * qty)
+
+            # Refresh available items after updating inventory
+            available_items = self.get_available_items()
+
         if not selected_items:
             print("\nNo items selected. Please select at least one item.")
             return self.select_items()
         self.payment_method(selected_items)
 
     def payment_method(self, selected_items):
-        print("\nPayment Methods:")
+        print("\nSelect payment method:")
         print("1. Card")
         print("2. Cash")
-        choice = input("Enter your choice (number): ").strip()
-        if choice == "1":
-            payment_method = "card"
-        elif choice == "2":
-            payment_method = "cash"
+        choice = input("\nEnter your choice (number): ").strip()
+        if choice == '1':
+            payment_method = 'card'
+        elif choice == '2':
+            payment_method = 'cash'
         else:
-            print("\nInvalid choice. Please enter '1' or '2'.")
+            print("\nInvalid choice. Please enter 1 for Card or 2 for Cash.")
             return self.payment_method(selected_items)
         self.apply_discounts(selected_items, payment_method)
 
+
+
+
+
+
+
+
     def get_order_count(self):
         return sum(1 for order in self.order_manager.orders if order['customer_name'] == self.customer_name)
+
+
+
+
+
+
+
+
+
 
     def apply_discounts(self, selected_items, payment_method):
         total = sum(self.products[item]['price'] for item in selected_items)
@@ -116,6 +139,17 @@ class KFCManagementSystem:
         total_after_discount = total * (1 - discount)
         self.store_order(selected_items, payment_method, total_after_discount, discount, total)
 
+
+
+
+
+
+
+
+
+
+
+
     def store_order(self, selected_items, payment_method, total_after_discount, total_discount, total):
         self.order_manager.place_order(self.customer_name, selected_items, payment_method, total, total_discount, total_after_discount)
         item_summary = Counter(selected_items)
@@ -129,4 +163,4 @@ class KFCManagementSystem:
         print(f"Total amount to be paid: Rs.{total_after_discount:.2f}/.")
         print(f"Date and time : {datetime.now().date()}   {datetime.now().strftime('%H:%M')}")
 
-        self.inventory_manager.update_inventory(selected_items)
+        #self.inventory_manager.update_inventory(selected_items)

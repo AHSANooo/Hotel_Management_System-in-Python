@@ -8,14 +8,12 @@ class OrderManager:
 
     def load_orders(self):
         try:
-            with open(self.orders_file) as file:
-                self.orders = json.load(file)
+            self.orders = json.load(open(self.orders_file))
         except FileNotFoundError:
             self.orders = []
 
     def save_orders(self):
-        with open(self.orders_file, 'w') as file:
-            json.dump(self.orders, file, indent=4)
+        json.dump(self.orders, open(self.orders_file, 'w'), indent=4)
 
     def place_order(self, customer_name, items, payment_method, total, total_discount, total_after_discount):
         order = {

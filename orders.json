@@ -136,5 +136,106 @@
         "total_discount": 0.027,
         "total_after_discount": 291.9,
         "datetime": "2024-07-08T15:08:10.376469"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "hot_wings",
+            "hot_wings"
+        ],
+        "payment_method": "cash",
+        "total": 600,
+        "total_discount": 0.147,
+        "total_after_discount": 511.8,
+        "datetime": "2024-07-08T16:33:20.593073"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "fries"
+        ],
+        "payment_method": "cash",
+        "total": 200,
+        "total_discount": 0.147,
+        "total_after_discount": 170.6,
+        "datetime": "2024-07-08T16:43:19.059288"
+    },
+    {
+        "customer_name": "HI",
+        "items": [
+            "fries"
+        ],
+        "payment_method": "cash",
+        "total": 200,
+        "total_discount": 0,
+        "total_after_discount": 200,
+        "datetime": "2024-07-08T16:44:54.684929"
+    },
+    {
+        "customer_name": "JDS",
+        "items": [
+            "fries",
+            "fries"
+        ],
+        "payment_method": "card",
+        "total": 400,
+        "total_discount": 0.05,
+        "total_after_discount": 380.0,
+        "datetime": "2024-07-08T16:47:14.005583"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "fries"
+        ],
+        "payment_method": "cash",
+        "total": 200,
+        "total_discount": 0.147,
+        "total_after_discount": 170.6,
+        "datetime": "2024-07-08T16:54:00.791738"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "burger"
+        ],
+        "payment_method": "cash",
+        "total": 465.0,
+        "total_discount": 0.147,
+        "total_after_discount": 396.645,
+        "datetime": "2024-07-08T16:58:49.379850"
+    },
+    {
+        "customer_name": "HI",
+        "items": [
+            "fries"
+        ],
+        "payment_method": "card",
+        "total": 200,
+        "total_discount": 0.077,
+        "total_after_discount": 184.60000000000002,
+        "datetime": "2024-07-08T17:02:37.341128"
+    },
+    {
+        "customer_name": "HI",
+        "items": [
+            "fries"
+        ],
+        "payment_method": "card",
+        "total": 200,
+        "total_discount": 0.077,
+        "total_after_discount": 184.60000000000002,
+        "datetime": "2024-07-08T17:10:56.446081"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "hot_wings"
+        ],
+        "payment_method": "card",
+        "total": 300,
+        "total_discount": 0.197,
+        "total_after_discount": 240.89999999999998,
+        "datetime": "2024-07-09T09:26:16.392503"
     }
 ]
