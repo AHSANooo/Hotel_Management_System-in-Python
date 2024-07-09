@@ -7,7 +7,6 @@ class ProductManager:
 
     def load_products(self):
         try:
-            with open(self.products_file) as file:
-                self.products = json.load(file)
+            self.products = json.load(open(self.products_file))
         except FileNotFoundError:
             self.products = {}

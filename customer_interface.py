@@ -4,7 +4,7 @@ from order_manager import OrderManager
 from product_manager import ProductManager
 from discount_manager import DiscountManager
 from input_validator import InputValidator
-import datetime
+from datetime import datetime
 
 class CustomerInterface:
     def __init__(self):
@@ -70,10 +70,10 @@ class CustomerInterface:
         return selected_items
 
     def payment_method(self):
-        payment_method = input("\nEnter payment method (Card/Cash): ").strip().lower()
+        payment_method = input("\nEnter payment method: \n1.Card\n2.Cash\n").strip().lower()
         while not InputValidator.validate_payment_method(payment_method):
-            print("\nInvalid payment method. Please enter 'Card' or 'Cash'.")
-            payment_method = input("\nEnter payment method (Card/Cash): ").strip().lower()
+            print("\nInvalid payment method. Please enter 1 or 2.")
+            payment_method = input("\nEnter payment method: \n1.Card\n2.Cash\n").strip().lower()
         return payment_method
 
     def get_order_count(self):

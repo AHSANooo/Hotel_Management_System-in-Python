@@ -248,5 +248,51 @@
         "total_discount": 0.147,
         "total_after_discount": 255.9,
         "datetime": "2024-07-09T14:02:31.815825"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "hot_wings"
+        ],
+        "payment_method": "cash",
+        "total": 300,
+        "total_discount": 0.147,
+        "total_after_discount": 255.9,
+        "datetime": "2024-07-09T14:07:36.707872"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "hot_wings"
+        ],
+        "payment_method": "card",
+        "total": 300,
+        "total_discount": 0.197,
+        "total_after_discount": 240.89999999999998,
+        "datetime": "2024-07-09T14:08:02.928056"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "hot_wings"
+        ],
+        "payment_method": "1",
+        "total": 300,
+        "total_discount": 0.197,
+        "total_after_discount": 240.89999999999998,
+        "datetime": "2024-07-09T14:44:37.297781"
+    },
+    {
+        "customer_name": "HI",
+        "items": [
+            "coleslaw",
+            "corn_on_cob",
+            "corn_on_cob"
+        ],
+        "payment_method": "2",
+        "total": 529.2,
+        "total_discount": 0.027,
+        "total_after_discount": 514.9116,
+        "datetime": "2024-07-09T14:48:16.502657"
     }
 ]

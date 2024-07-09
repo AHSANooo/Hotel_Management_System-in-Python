@@ -15,4 +15,4 @@ class InputValidator:
 
     @staticmethod
     def validate_payment_method(payment_method):
-        return payment_method in ['card', 'cash']
+        return payment_method in ['1', '2']

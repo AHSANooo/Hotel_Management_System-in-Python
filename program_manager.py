@@ -13,6 +13,7 @@ class ProgramManager:
             total, discount, total_after_discount = self.customer_interface.apply_discounts(selected_items, payment_method)
             self.customer_interface.store_order(selected_items, payment_method, total_after_discount, discount, total)
 
+
 if __name__ == "__main__":
     program = ProgramManager()
     program.run()
