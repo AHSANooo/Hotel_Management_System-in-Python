@@ -318,5 +318,27 @@
         "total_discount": 0.16999999999999998,
         "total_after_discount": 298.8,
         "datetime": "2024-07-09T15:24:38.146703"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "mashed_potatoes"
+        ],
+        "payment_method": "2",
+        "total": 209.0,
+        "total_discount": 0.12,
+        "total_after_discount": 183.92,
+        "datetime": "2024-07-09T17:36:24.696242"
+    },
+    {
+        "customer_name": "MUHAMMAD AHSAN",
+        "items": [
+            "hot_wings"
+        ],
+        "payment_method": "1",
+        "total": 300,
+        "total_discount": 0.16999999999999998,
+        "total_after_discount": 249.00000000000003,
+        "datetime": "2024-07-10T09:49:40.629142"
     }
 ]
